@@ -1,0 +1,23 @@
+Test Document: Stock Broking Functional Tests
+
+1. Test: User Login
+   Endpoint: POST /auth/login
+   Headers: Content-Type: application/json
+   Body: {"username": "test_user", "password": "password123"}
+   Expected Response: Status 200, returns {access_token, user_id}
+
+2. Test: Place Order
+   Endpoint: POST /orders/place
+   Headers: Authorization: Bearer {access_token}, Content-Type: application/json
+   Body: {"symbol": "RELIANCE", "quantity": 10, "price": 2500}
+   Expected Response: Status 201, returns {order_id, status: "pending"}
+
+3. Test: Get Portfolio
+   Endpoint: GET /portfolio/holdings
+   Headers: Authorization: Bearer {access_token}
+   Expected Response: Status 200, returns {holdings: [{symbol, quantity, value}]}
+
+4. Test: Cancel Order
+   Endpoint: DELETE /orders/{order_id}
+   Headers: Authorization: Bearer {access_token}
+   Expected Response: Status 200, returns {status: "cancelled"}
